@@ -144,10 +144,78 @@ img.add_border {
     <div id="tipue_search_content">HW 2 << <a href='HW 2.html'>Previous</a> <a href='HW 2 Exam.html'>Next</a> >> HW 2 Exam<br /><h1>w11_hw</h1>
 <p>1.  已知可以用 Python 程式<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/c2225ac22f32ee8485a630b42cf3f4d8567bb661/up_to_down_pyramid.py">由上往下列印三角形 *</a>, 或<a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5e6eda7a004c15fa7262b9a80bfa4af6/raw/56793c72d4495d564e3cc6214ed5fb68dbd2b21d/left_to_right_pyramid.py">由左往右列印三角形 *</a>, 請將此程式延伸到可以在 10x10 的字元區域中, 以 "*" 字元列印出圓型區域. 完成後請將程式碼存入個人 Gist 後, 直接在個人作業網站中的 Brython 頁面中執行. (提示: ?src=gist_script_URL)</p>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/ab944d8fdc55385ebc9666bb440963c7/raw/d316a24b0fa974d3e251783d7bbe82095b24dbf1/w11w.py">第一題</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import math
+
+# 定義區域大小和圓心
+size = 10
+radius = size // 2
+center = radius - 0.5 # 圓心位置調整到中心
+
+# 產生 10x10 的字元區域
+for y in range(size):
+for x in range(size):
+# 計算該點是否在圓的範圍內
+distance = math.sqrt((x - center) ** 2 + (y - center) ** 2)
+if distance &lt;= radius:
+print("＊", end="")
+else:
+print("　", end="")
+print() # 換行</pre>
+<p><br/><br/></p>
 <p>2. 已知可以在網頁中利用 Brython 繪製方格與塗色, 如下連結, 請設法修改此一程式, 直接將程式存入個人的 Gist, 並利用黑色方塊圍出一個圓形區域.</p>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/ab944d8fdc55385ebc9666bb440963c7/raw/d316a24b0fa974d3e251783d7bbe82095b24dbf1/11-2.py">第二題 </a> <a href="https://mde.tw/cp2024/content/Brython.html?src=https://gist.githubusercontent.com/mdecycu/5705fc2a67aa1db0c0d44d6d0478b08b/raw/f95909804a1f134963cade8463eeb9bd32129ea8/grid_line_and_fill_in_Brython.py">網頁上的方格與塗色</a></p>
-<p>3. 完成上列題目後, 請利用 Youtube 影片<span>簡報</span>個人的解題過程與心得.</p>
-<br />HW 2 << <a href='HW 2.html'>Previous</a> <a href='HW 2 Exam.html'>Next</a> >> HW 2 Exam</div>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+# 每一格的 pixel 數
+gs = 20
+
+# canvas context
+ctx = canvas.getContext("2d")
+
+# 定義繪製矩形的函數
+def dRect(lux, luy, w, h, s=1, c="lightgrey"):
+ctx.lineWidth = s
+ctx.strokeStyle = c
+ctx.beginPath()
+ctx.rect(lux, luy, w, h)
+ctx.stroke()
+
+# 繪製網格
+def grid(width, height, grid_pix):
+for i in range(width):
+for j in range(height):
+dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+
+# 填滿指定格子
+def fill(x, y, color):
+ctx.fillStyle = color
+ctx.fillRect((x - 1) * gs, (y - 1) * gs, gs, gs)
+
+# 判斷是否在圓形範圍內
+def is_in_circle(cx, cy, x, y, r):
+return ((x - cx) ** 2 + (y - cy) ** 2) &lt;= r ** 2
+
+# 圓形繪製
+def draw_circle(grid_size, radius):
+center = (grid_size // 2) + 0.5 # 圓心位於中心
+for i in range(1, grid_size + 1):
+for j in range(1, grid_size + 1):
+# 檢查格子中心點是否在圓內
+if is_in_circle(center, center, i, j, radius):
+fill(i, j, "black")
+
+# 主程式
+grid(10, 10, gs)
+draw_circle(10, 5) # 圓的半徑為 4.5</pre>
+<p><br/><br/></p>
+<p>3. 完成上列題目後, 請利用 Youtube 影片<span>簡報</span>個人的解題過程與心得.</p><br />HW 2 << <a href='HW 2.html'>Previous</a> <a href='HW 2 Exam.html'>Next</a> >> HW 2 Exam</div>
         
     <!-- footer -->
       <div class="container">

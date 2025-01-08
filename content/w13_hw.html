@@ -143,8 +143,130 @@ img.add_border {
         </header>
     <div id="tipue_search_content">w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14<br /><h1>w13_hw</h1>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/f69f5e8dd0cdc04addf55f00477c5d97/raw/7547ea69d2af638bc4d40ebf88d526679335ff90/w13.py">兩個紅色框框</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html # 導入html函式庫
+from browser import document as doc # 導入document程式庫並在程式中命名(簡寫)為doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400) # 建立一個400x400的畫布
+brython_div = doc["brython_div1"] # 找到頁面上id為"brython_div1"的元素
+brython_div &lt;= canvas # 將畫布加入到指定的div中
+
+# 每一格的像素大小
+gs = 200 # 格子大小 (單位為像素)
+
+# 取得 canvas 的 2D 繪圖上下文
+ctx = canvas.getContext("2d") # 取得繪圖上下文，這樣可以在畫布上繪圖
+
+# 方形的寬和高 (在這個範例中是1)
+width = 1 # 方形的寬度
+height = 1 # 方形的高度
+
+# 第一個方形
+for i in range(width): # 假設這裡的寬和高都是1，因此只會繪製一個方形
+for j in range(height):
+# 設置繪製參數
+ctx.lineWidth = 1 # 設置邊框寬度
+ctx.strokeStyle = 'red' # 設置顏色為紅色
+ctx.beginPath() # 開始繪製
+ctx.rect(i * gs, j * gs, gs, gs) # 繪製方形，位置為(0,0)，大小為gs*gs
+ctx.stroke() # 繪製邊框
+
+# 第二個偏移的方形
+for i in range(width): # 假設這裡的寬和高都是1，因此只會繪製一個方形
+for j in range(height):
+# 設置繪製參數
+ctx.lineWidth = 1 # 設置邊框寬度
+ctx.strokeStyle = 'red' # 設置顏色為紅色
+ctx.beginPath() # 開始繪製
+ctx.rect(i * gs + 100, j * gs + 100, gs, gs) # 偏移100像素後繪製第二個方形
+ctx.stroke() # 繪製邊框</pre>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/82bb7065b282b3e57a45de3b51467a33/raw/f0cc0ecb767aa91a3c8a4143377d82539cfe5b2f/home%2520w13.py">作業</a></p>
-<br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+
+
+
+
+
+# 定義圓心和半徑
+x1, y1 = 200, 200 # 第一個圓的圓心
+x2, y2 = 300, 300 # 第二個圓的圓心
+radius = 141.4 # 圓的半徑
+
+ctx = canvas.getContext("2d")
+
+# 保存原本的繪製狀態
+ctx.save()
+
+
+
+
+# 繪製第一個圓
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+
+# 設置合成模式為 "source-in"（只保留交集部分）
+ctx.globalCompositeOperation = "source-in"
+
+# 繪製第二個圓
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+
+# 恢復繪製狀態
+ctx.restore()
+
+
+
+
+# 繪製第一個正方形
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200) # x, y, width, height
+#ctx.fillStyle = "blue" # 填充顏色
+#ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "red" # 邊框顏色
+ctx.stroke()
+
+
+
+
+# 繪製第二個正方形
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200) # x, y, width, height
+#ctx.fillStyle = "green" # 填充顏色
+#ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "red" # 邊框顏色
+ctx.stroke()
+
+# 邊框（可選）
+ctx.lineWidth = 2
+ctx.strokeStyle = "black"
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.stroke()
+
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.stroke()
+
+# 在第一個正方形中繪製右斜對角線
+ctx.beginPath()
+ctx.moveTo(100, 100) # 起點：左上角
+ctx.lineTo(300, 300) # 終點：右下角
+ctx.lineWidth = 2
+ctx.strokeStyle = "blue" # 對角線顏色
+ctx.stroke()</pre>
+<p><br/><br/></p><br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
         
     <!-- footer -->
       <div class="container">

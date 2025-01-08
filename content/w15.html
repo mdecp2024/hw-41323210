@@ -143,10 +143,35 @@ img.add_border {
         </header>
     <div id="tipue_search_content">w14 << <a href='w14.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w15</h1>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html">作業</a>1-1</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">sum = 1+2+3+4+5+6+7+8+9+10
+print(sum)</pre>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/6ff2a0f0e0cb5d569b70152cdb182365/raw/ac394d2b0a5b94ce24b07a1360687668b9c27334/w15.py">作業</a>1-2(加上addto)</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義 addto 函數來計算範圍內的總和
+def addto(start, end):
+return sum(range(start, end + 1))
+
+# 使用 addto 函數計算 1 加到 100 的總和
+total = addto(1, 100)
+
+print("1 加到 100 的總和是:", total)</pre>
 <p><a href="https://mdecp2024.github.io/hw-41323210/content/Brython.html?src=https://gist.githubusercontent.com/41323210/6ff2a0f0e0cb5d569b70152cdb182365/raw/f4d0449b476cee5698e17556ac576d32da019591/w15-2.py">作業2</a></p>
-<p></p>
-<br />w14 << <a href='w14.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 輸入兩個數字
+num1 = int(input("請輸入第一個數字: "))
+num2 = int(input("請輸入第二個數字: "))
+
+# 確保num1小於num2
+start = min(num1, num2)
+end = max(num1, num2)
+
+# 計算總和
+sum = 0
+for i in range(start, end + 1):
+sum += i
+
+print(f"{num1} 到 {num2} 之間所有數字的總和是: {sum}")
+
+</pre>
+<p><br/><br/></p><br />w14 << <a href='w14.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
       <div class="container">
